@@ -1,21 +1,22 @@
 import React from "react";
-import styles from "./page_laoding.module.scss";
+import "./loading.scss";
 
 const LoadingEffect = (): React.JSX.Element => {
   return (
-    <section className={styles.loading_container}>
-      <div className={styles.dots}>
-        <div className={styles.dot}>L</div>
-        <div className={styles.dot}>O</div>
-        <div className={styles.dot}>A</div>
-        <div className={styles.dot}>D</div>
-        <div className={styles.dot}>I</div>
-        <div className={styles.dot}>N</div>
-        <div className={styles.dot}>G</div>
-        <div className={styles.dot}>.</div>
-        <div className={styles.dot}>.</div>
-        <div className={styles.dot}>.</div>
+    <section className="loading_container">
+      <div className="dots">
+        <div className="dot">L</div>
+        <div className="dot">O</div>
+        <div className="dot">A</div>
+        <div className="dot">D</div>
+        <div className="dot">I</div>
+        <div className="dot">N</div>
+        <div className="dot">G</div>
+        <div className="dot">.</div>
+        <div className="dot">.</div>
+        <div className="dot">.</div>
       </div>
+      <p className="title">------------------ Proshore Todo -------------------</p>
     </section>
   );
 };

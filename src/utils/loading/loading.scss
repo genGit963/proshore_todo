@@ -1,7 +1,7 @@
-@use '../../globals-var' as g_var;
+@use "../../global" as theme;
 
 .loading_container {
-    @include g_var.container_constraints;
+    @include theme.container_constraints;
     margin-top: 200px;
 
     .dots {
@@ -9,7 +9,7 @@
         flex-direction: row;
         gap: 20px;
         justify-content: center;
-
+        
         .dot {
             // border: 1px solid;
             height: 30px;
@@ -19,7 +19,7 @@
             align-content: center;
             text-align: center;
             font-size: large;
-            background-color: g_var.$primary_dark;
+            background-color: theme.$primary_color;
             color: white;
             font-weight: 600;
             box-shadow: 1px 10px 20px rgba(128, 128, 128, 0.723);
@@ -48,12 +48,18 @@
             }
         }
     }
+
+    .title{
+        margin-top: 10px;
+        text-align: center;
+
+    }
 }
 
-@media (max-width: g_var.$mobile ){
+@media (max-width: theme.$mobile_tab ){
 
     .loading_container {
-    @include g_var.container_constraints;
+    @include theme.container_constraints;
     margin-top: 200px;
     // border: 1px solid;
 
@@ -72,10 +78,10 @@
             align-content: center;
             text-align: center;
             font-size: small;
-            background-color: g_var.$primary_dark;
+            background-color: theme.$primary_color;
             color: white;
             font-weight: 400;
-            box-shadow: 1px 10px 20px rgba(128, 128, 128, 0.723);
+            box-shadow: 1px 10px 30px rgba(128, 128, 128, 0.723);
 
             animation: wave 1000ms infinite alternate;
         }
