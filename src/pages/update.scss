@@ -60,19 +60,31 @@
                 margin-left: 0px;
             }
 
+            .p_date {
+                color: black;
+                margin-bottom: 20px;
+            }
+
             .deadline_pick {
                 color: theme.$upcoming_color;
 
-                input {
+
+
+                .date {
                     border: 2px solid theme.$upcoming_color;
                     border-radius: 5px;
+                }
 
+                .time {
+                    border: 2px solid theme.$upcoming_color;
+                    border-radius: 5px;
+                    width: 90px;
                 }
 
                 input:hover {
                     border: 2px solid theme.$complete_color;
                     border-radius: 5px;
-
+                    cursor: pointer;
                 }
             }
 

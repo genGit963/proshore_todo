@@ -17,10 +17,13 @@ export interface LoginInterface {
   Password: string;
 }
 
-export interface SignInterface {
+export interface SignUpInterface {
   Name: string;
   Email: string;
   Password: string;
+}
+export interface ForgetPasswordInterface {
+  Email: string;
 }
 
 export interface NewPasswordInterface {

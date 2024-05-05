@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useUserStore } from "../store/user_store";
 import { useNavigate } from "react-router-dom";
 
-import "./login.scss";
+import "./auth.scss";
 import { LoginInterface } from "../models/user";
 import USER_APIs from "../api/user_api";
 import LoadingEffect from "../utils/loading/loading";
@@ -17,31 +17,20 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { setUser } = useUserStore();
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
-
-  // const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-  //   if (e.key === "Enter") {
-  //     handleSubmit(e as any); // Call handleSubmit when Enter key is pressed
-  //   }
-  // };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     // console.log("LoginPage: ", formData);
     e.preventDefault();
     try {
       setLoading(true);
       await USER_APIs.login(formData).then((response) => {
-        // console.log("LoginRes: ", response.data);
         setUser(response.data);
+        alert(`Login Successful !!`);
         navigate("/");
       });
     } catch (error) {
       setError(String(error));
       console.error("Login failed:", error);
     } finally {
-      alert(`Login Successful !!`);
       setLoading(false);
     }
   };
@@ -88,6 +77,7 @@ const LoginPage: React.FC = () => {
           </p>
 
           <p
+          onClick={()=>navigate("/forget_password")}
             style={{
               color: "red",
               textAlign: "center",

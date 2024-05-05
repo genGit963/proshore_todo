@@ -9,6 +9,8 @@ import SignupPage from "./pages/signup";
 import AuthLayout from "./layouts/auth_layout";
 import ProtectedRoute from "./utils/route_utils/protected_routes";
 import { useUserStore } from "./store/user_store";
+import ForgetPasswordPage from "./pages/forget_password";
+import NewPasswordPage from "./pages/new_password";
 
 const AppRouter = () => {
   const { user } = useUserStore();
@@ -18,6 +20,8 @@ const AppRouter = () => {
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/forget_password" element={<ForgetPasswordPage />} />
+          <Route path="/new_password" element={<NewPasswordPage />} />
         </Route>
         <Route element={<ProtectedRoute user={user} />}>
           <Route element={<AppLayout />}>

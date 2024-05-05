@@ -14,8 +14,6 @@
         h1 {
             color: theme.$primary_color;
             font-weight: 600;
-            font-size: 45px;
-            letter-spacing:0.5cm;
             text-align: center;
             justify-content: center;
             margin-bottom: 50px;
@@ -26,7 +24,7 @@
             box-shadow: 1px 1px 20px theme.$mute_color;
             border-radius: 15px;
             padding: 20px;
-            width: 400px;
+            width: 250px;
             margin: auto;
             display: flex;
             flex-direction: column;

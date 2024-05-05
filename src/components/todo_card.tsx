@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { TodoResponseInterface } from "../models/todo";
 import "./todo_card.scss";
 import { useTodoStore } from "../store/todo_store";
+import { useEffect } from "react";
+
+import alertSound from "../assets/success.mp3";
 
 const TodoCard: React.FC<TodoResponseInterface> = ({
   _id,
@@ -16,6 +19,27 @@ const TodoCard: React.FC<TodoResponseInterface> = ({
 }) => {
   const navigate = useNavigate();
   const { setTodo } = useTodoStore();
+
+  //alert system
+  /* 
+  ----- ALERT SYSTEM ----
+  1. This will check deadline every second
+  2. if deadline and currentDate match, automatically play #thor thematic
+      soundtrack effect. 
+  */
+  const alertEffect = new Audio(alertSound);
+  useEffect(() => {
+    const currentDate: Date = new Date();
+    const alterWatch = setInterval(() => {
+      // console.log("Checking for alert ..... ") // uncomment it, to see if its working 
+      if (currentDate === new Date(Deadline)) {
+        alert(`${Name} todo crossed deadline !!`);
+        alertEffect.play();
+      }
+    }, 1000);
+    return () => clearInterval(alterWatch);
+  }, []);
+
   // to detail page
   const handleDetail = () => {
     setTodo({

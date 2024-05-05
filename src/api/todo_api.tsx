@@ -36,11 +36,33 @@ const TODO_APIs = {
       },
     });
   },
+  direct_done_update_todo: async (token: string, id: string) => {
+    return await APP_API.request({
+      url: `/api/todo/done/${id}`,
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
+
+  direct_undone_update_todo: async (token: string, id: string) => {
+    return await APP_API.request({
+      url: `/api/todo/undone/${id}`,
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
 
   delete_todo: async (token: string, id: string) => {
+    console.log("api: ", id);
     return await APP_API.request({
       url: `/api/todo/delete/${id}`,
-      method: "PATCH",
+      method: "DELETE",
       headers: {
         Accept: "application/json",
         Authorization: `Bearer ${token}`,

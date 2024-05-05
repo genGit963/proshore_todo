@@ -1,61 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import "./update.scss";
-import { data } from "../data/dummy_data";
-import { TodoInterface } from "../models/todo";
 import DateLocale from "../utils/date_time/date";
 import TimeLocale from "../utils/date_time/time";
+import { useTodoStore } from "../store/todo_store";
+import { Todo } from "../models/todo";
+import TODO_APIs from "../api/todo_api";
+import { useUserStore } from "../store/user_store";
+import LoadingEffect from "../utils/loading/loading";
+import { useNavigate } from "react-router-dom";
 
 const UpdatePage: React.FC = () => {
-  const updateTodo: TodoInterface = data[2];
+  const { todo } = useTodoStore();
+  const { user } = useUserStore();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
 
-  // const
+  const [updateData, setUpdateData] = useState<Todo>({
+    Name: todo?.Name as string,
+    Short_Description: todo?.Short_Description as string,
+    Deadline: todo?.Deadline as Date,
+    Status: todo?.Status as string,
+  });
+
+  // console.log("data: ", updateData);
+  const handleUpdateSubmit = async () => {
+    try {
+      setLoading(true);
+      const token: string = user?.token as string;
+      await TODO_APIs.update_todo(token, todo?._id as string, updateData).then(
+        (response) => {
+          console.log("Updated data : ", response.data);
+          alert("Update Successfully !!");
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      alert("Server Error: \n" + String(error));
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="update_page">
       <p className="heading">Update Todo</p>
-      <div className="update_container">
-        <form action="" className="update_form">
-          <input
-            required
-            type="text"
-            placeholder="Title"
-            className="title"
-            defaultValue={updateTodo.Name}
-          />
-          <textarea
-            required
-            name="Short_Description"
-            placeholder="Please write very short description...."
-            className="description"
-            defaultValue={updateTodo.Short_Description}
-          />
-          <div className="status">
-            <label>Status: &nbsp; &nbsp;</label>
-            <select name="status" defaultValue={updateTodo.Status}>
-              <option value="upcoming">upcoming</option>
-              <option value="done">done</option>
-            </select>
+      <div>
+        {loading ? (
+          <LoadingEffect />
+        ) : (
+          <div className="update_container">
+            <form onSubmit={handleUpdateSubmit} className="update_form">
+              <input
+                required={true}
+                type="text"
+                placeholder="Title"
+                className="title"
+                value={updateData.Name}
+                onChange={(e) =>
+                  setUpdateData({ ...updateData, Name: e.target.value })
+                }
+              />
+              <textarea
+                required={true}
+                name="Short_Description"
+                placeholder="Please write very short description...."
+                className="description"
+                value={updateData.Short_Description}
+                onChange={(e) =>
+                  setUpdateData({
+                    ...updateData,
+                    Short_Description: e.target.value,
+                  })
+                }
+              />
+              <div className="status">
+                <label>Status: </label>
+                <select
+                  name="Status"
+                  value={updateData.Status}
+                  onChange={(e) =>
+                    setUpdateData({ ...updateData, Status: e.target.value })
+                  }
+                >
+                  <option value="upcoming">upcoming</option>
+                  <option value="done">done</option>
+                </select>
+              </div>
+              <p className="p_date">
+                Previous Deadline:{" "}
+                {new Date(todo?.Deadline as Date).toDateString()},
+                {new Date(todo?.Deadline as Date).toLocaleTimeString()}
+              </p>{" "}
+              <div className="deadline_pick">
+                Change Deadline: &nbsp;&nbsp;
+                <input
+                  type="date"
+                  value={new Date(updateData.Deadline)
+                    .toISOString()
+                    .slice(0, 16)}
+                  onChange={(e) =>
+                    setUpdateData({
+                      ...updateData,
+                      Deadline: new Date(e.target.value),
+                    })
+                  }
+                />
+              </div>
+              <p className="today">
+                <DateLocale />, <TimeLocale />
+              </p>
+              <button className="add_it_btn" type="submit">
+                Update
+              </button>
+            </form>
           </div>
-          <div className="deadline_pick">
-            Pick Deadline: &nbsp;&nbsp;
-            <input
-              type="date"
-              defaultValue={updateTodo.Deadline.toDateString()}
-            />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="time" />
-          </div>
-          <div className="today">
-            <DateLocale />, <TimeLocale />
-          </div>
-          <button
-            className="add_it_btn"
-            onSubmit={() => {
-              console.log("onSubmit");
-            }}
-          >
-            Update
-          </button>
-        </form>
+        )}
       </div>
     </div>
   );

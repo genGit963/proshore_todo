@@ -1,7 +1,8 @@
 import {
+  ForgetPasswordInterface,
   LoginInterface,
   NewPasswordInterface,
-  SignInterface,
+  SignUpInterface,
 } from "../models/user";
 import APP_API from "./config_axios";
 
@@ -23,7 +24,7 @@ const USER_APIs = {
     });
   },
 
-  signup: async (signup_data: SignInterface) => {
+  signup: async (signup_data: SignUpInterface) => {
     return await APP_API.request({
       url: "/api/user/signup",
       method: "POST",
@@ -34,11 +35,11 @@ const USER_APIs = {
     });
   },
 
-  forget_password: async (Email: string) => {
+  forget_password: async (data: ForgetPasswordInterface) => {
     return await APP_API.request({
       url: "/api/user/forget_password",
       method: "POST",
-      data: { Email },
+      data: data,
       headers: {
         Accept: "application/json",
       },

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { data } from "../data/dummy_data";
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/user_store";
 import TodoCard from "../components/todo_card";
@@ -24,7 +23,7 @@ const HomePage: React.FC = () => {
           (response) => {
             // console.log("all your todo: ", response.data);
             setTodoList(response.data.todos);
-            // console.log("store todos: ", todos)
+            // console.log("store todos: ", todos);
           }
         );
       } catch (error) {
@@ -82,12 +81,12 @@ const HomePage: React.FC = () => {
               </div>
               <div className="completed_container">
                 {/* only completed */}
-                {data
+                {todos
                   .filter((item) => item.Status == "done")
                   .map((todo) => (
                     <TodoCard
-                      key={todo.id}
-                      _id={todo.id}
+                      key={todo._id}
+                      _id={todo._id}
                       Name={todo.Name}
                       Short_Description={todo.Short_Description}
                       Status={todo.Status}
