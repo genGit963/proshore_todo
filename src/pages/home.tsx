@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
           }
         );
       } catch (error) {
-        alert(String(error));
+        alert(String("Server Error! "));
       } finally {
         setLoading(false);
       }
