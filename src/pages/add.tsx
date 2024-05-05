@@ -28,7 +28,7 @@ const AddPage: React.FC = () => {
       await TODO_APIs.add_todos(user?.token as string, todoData).then(
         (respone) => {
           doneAudio.play();
-          console.log("Respones: ", respone.data);
+          // console.log("Respones: ", respone.data);
           alert("Todo added successfully !!");
           navigate("/");
         }

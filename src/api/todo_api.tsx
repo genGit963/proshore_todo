@@ -59,7 +59,7 @@ const TODO_APIs = {
   },
 
   delete_todo: async (token: string, id: string) => {
-    console.log("api: ", id);
+    // console.log("api: ", id);
     return await APP_API.request({
       url: `/api/todo/delete/${id}`,
       method: "DELETE",

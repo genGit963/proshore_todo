@@ -31,7 +31,7 @@ const DetailPage: React.FC = () => {
         user?.token as string,
         todo?._id as string
       ).then((response) => {
-        console.log("Response: ", response.data);
+        // console.log("Response: ", response.data);
         alert("Deleted Successfully !!");
         navigate("/");
       });
@@ -51,7 +51,7 @@ const DetailPage: React.FC = () => {
         todo?._id as string
       ).then((response) => {
         doneAudio.play(); // audio effect
-        console.log("Response: ", response.data);
+        // console.log("Response: ", response.data);
         alert("Well Done, Keep it up!! \n\n\n Enjoy the sound 🤣");
         navigate("/");
       });
@@ -71,7 +71,7 @@ const DetailPage: React.FC = () => {
         todo?._id as string
       ).then((response) => {
         funnyAudio.play(); // audio effect
-        console.log("Response: ", response.data);
+        // console.log("Response: ", response.data);
         alert(
           "Added to Upcoming!! \n\n\n Sorry for sound effect, just for fun !! #Thor 🤣"
         );
