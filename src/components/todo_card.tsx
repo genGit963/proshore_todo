@@ -40,7 +40,10 @@ const TodoCard: React.FC<TodoResponseInterface> = ({
       //   new Date(Deadline).toLocaleString()
       // );
 
-      if (currentDate.toDateString() === new Date(Deadline).toDateString()) {
+      if (
+        currentDate.toLocaleDateString() ===
+        new Date(Deadline).toLocaleDateString()
+      ) {
         alert(`${Name} todo crossed deadline !!`);
         alertEffect.play();
       }
