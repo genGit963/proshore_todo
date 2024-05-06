@@ -94,7 +94,7 @@ const UpdatePage: React.FC = () => {
               <div className="deadline_pick">
                 Change Deadline: &nbsp;&nbsp;
                 <input
-                  type="date"
+                  type="datetime-local"
                   value={new Date(updateData.Deadline)
                     .toISOString()
                     .slice(0, 16)}
