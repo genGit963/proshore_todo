@@ -41,6 +41,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
+      <p style={{fontSize:10}}>Note: It has ISO date time applied !!</p>
       <button className="addtodo_btn" onClick={() => navigate("/add")}>
         Add New todo
       </button>
