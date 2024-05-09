@@ -38,7 +38,7 @@ const ForgetPasswordPage: React.FC = () => {
       ) : (
         <div className="login_container">
           <h1>PROSHORE TODO </h1>
-          <h2>LOGIN</h2>
+          <h2>Forget Password</h2>
           <form onSubmit={handleSubmit} className="login_from">
             <input
               type="email"

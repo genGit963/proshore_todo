@@ -41,7 +41,7 @@ const NewPasswordPage: React.FC = () => {
       ) : (
         <div className="login_container">
           <h1>PROSHORE TODO </h1>
-          <h2>LOGIN</h2>
+          <h2>New Password</h2>
           <form onSubmit={handleSubmit} className="login_from">
             <input
               type="text"
